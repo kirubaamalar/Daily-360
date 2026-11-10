@@ -1,0 +1,85 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/figtree';
+@import '@fontsource-variable/bricolage-grotesque';
+
+/*
+ * Daily360 design tokens
+ * Ink (navy) carries structure, Indigo carries interaction, Mist is the ground.
+ * Semantic accents are reserved for meaning: sage = gain/done, rose = spend/overdue,
+ * amber = attention, sky = hydration & wellness data.
+ */
+@theme {
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Figtree Variable', ui-sans-serif, sans-serif;
+
+  --color-ink: #141b3d;
+  --color-ink-2: #222c5e;
+  --color-ink-3: #34407a;
+  --color-indigo: #4c55c9;
+  --color-indigo-deep: #3a42a8;
+  --color-indigo-soft: #e9eafb;
+  --color-mist: #f2f3f7;
+  --color-paper: #ffffff;
+  --color-line: #e3e5ee;
+  --color-text: #141b3d;
+  --color-muted: #5d6583;
+  --color-faint: #8a90aa;
+  --color-sage: #2f8a69;
+  --color-sage-soft: #e3f2ec;
+  --color-rose: #c8475e;
+  --color-rose-soft: #faeaed;
+  --color-amber: #b97c14;
+  --color-amber-soft: #fbf1de;
+  --color-sky: #2e86c1;
+  --color-sky-soft: #e4f1fa;
+
+  --radius-panel: 28px;
+  --radius-card: 20px;
+  --radius-control: 14px;
+
+  --shadow-card: 0 1px 2px rgb(20 27 61 / 0.04), 0 4px 16px -6px rgb(20 27 61 / 0.08);
+  --shadow-float: 0 10px 30px -10px rgb(20 27 61 / 0.35);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+    background: var(--color-mist);
+  }
+  body {
+    @apply bg-mist font-sans text-text antialiased;
+    overscroll-behavior-y: none;
+  }
+  /* 16px minimum prevents iOS/Android zoom-on-focus */
+  input, select, textarea { font-size: 16px; }
+  :focus-visible { outline: 2px solid var(--color-indigo); outline-offset: 2px; }
+  button { cursor: pointer; }
+}
+
+@utility tabular { font-variant-numeric: tabular-nums; }
+@utility safe-bottom { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+@utility safe-top { padding-top: max(env(safe-area-inset-top), 0px); }
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+@keyframes sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes page-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes dial-draw { from { stroke-dashoffset: var(--dial-len); } }
+
+.animate-sheet-up { animation: sheet-up 320ms var(--ease-out-soft); }
+.animate-fade-in { animation: fade-in 200ms ease-out; }
+.animate-page-in { animation: page-in 260ms var(--ease-out-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type='number'] { -moz-appearance: textfield; }
