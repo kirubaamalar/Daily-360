@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="240" height="260">
+  <!-- Luna, the Daily360 bedtime mascot. Original artwork. -->
+  <defs>
+    <linearGradient id="moon" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#ffe3a3"/>
+      <stop offset="1" stop-color="#f0b84f"/>
+    </linearGradient>
+    <mask id="crescent">
+      <rect width="240" height="260" fill="#fff"/>
+      <circle cx="168" cy="98" r="70" fill="#000"/>
+    </mask>
+  </defs>
+  <style>
+    .sway { animation: sway 4s ease-in-out infinite; transform-origin: 120px 150px; }
+    .z { animation: z 3.6s ease-out infinite; opacity: 0; font: 700 26px 'Bricolage Grotesque Variable', 'Figtree Variable', sans-serif; fill: #8f97ff; }
+    .z2 { animation-delay: 1.2s; font-size: 20px } .z3 { animation-delay: 2.4s; font-size: 15px }
+    .star { animation: twinkle 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .s2 { animation-delay: .7s } .s3 { animation-delay: 1.4s }
+    .tassel { animation: tassel 4s ease-in-out infinite; transform-origin: 176px 40px; }
+    @keyframes sway { 0%,100% { transform: rotate(-4deg) translateY(0) } 50% { transform: rotate(4deg) translateY(-6px) } }
+    @keyframes z { 0% { transform: translate(0,0); opacity: 0 } 20% { opacity: 1 } 100% { transform: translate(26px,-60px); opacity: 0 } }
+    @keyframes twinkle { 0%,100% { transform: scale(1); opacity: 1 } 50% { transform: scale(.5); opacity: .4 } }
+    @keyframes tassel { 0%,100% { transform: rotate(0) } 50% { transform: rotate(10deg) } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important } .z { opacity: .8 } }
+  </style>
+
+  <path class="star" d="M30 70 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#f0c06a"/>
+  <path class="star s2" d="M206 196 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#aab0ff"/>
+  <path class="star s3" d="M52 218 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" fill="#7cb8e6"/>
+
+  <g class="sway">
+    <!-- crescent body -->
+    <circle cx="120" cy="140" r="86" fill="url(#moon)" mask="url(#crescent)"/>
+    <circle cx="74" cy="118" r="7" fill="#e8a93a" opacity=".45" mask="url(#crescent)"/>
+    <circle cx="96" cy="200" r="9" fill="#e8a93a" opacity=".4"/>
+
+    <!-- nightcap -->
+    <path d="M58 92 C 70 50, 120 30, 166 36 C 150 52, 120 74, 104 104 Z" fill="#6b74e6"/>
+    <path d="M56 96 C 70 86, 92 94, 106 106" stroke="#e9eafb" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <g class="tassel"><circle cx="176" cy="40" r="11" fill="#e9eafb"/></g>
+
+    <!-- sleepy face -->
+    <path d="M70 150 Q 80 160 90 150" stroke="#141b3d" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <path d="M104 166 Q 114 176 124 166" stroke="#141b3d" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <ellipse cx="72" cy="172" rx="9" ry="5" fill="#ff8fa3" opacity=".5"/>
+    <path d="M84 184 Q 92 190 100 186" stroke="#141b3d" stroke-width="4" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <text class="z" x="160" y="132">Z</text>
+  <text class="z z2" x="160" y="132">Z</text>
+  <text class="z z3" x="160" y="132">z</text>
+</svg>

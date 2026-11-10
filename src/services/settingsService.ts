@@ -13,6 +13,10 @@ export async function loadSettings(): Promise<AppSettings> {
     ...row,
     targets: { ...DEFAULT_SETTINGS.targets, ...row.targets },
     weights: { ...DEFAULT_SETTINGS.weights, ...row.weights },
+    reminders: {
+      water: { ...DEFAULT_SETTINGS.reminders.water, ...row.reminders?.water },
+      sleep: { ...DEFAULT_SETTINGS.reminders.sleep, ...row.reminders?.sleep },
+    },
   }
 }
 

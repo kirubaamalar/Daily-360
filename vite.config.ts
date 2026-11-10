@@ -34,6 +34,10 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        globIgnores: ['push-sw.js'],
+        // Reminder notifications: push + notification buttons (public/push-sw.js)
+        importScripts: ['/push-sw.js'],
+        navigateFallbackDenylist: [/^\/api\//],
         navigateFallback: '/index.html',
       },
     }),

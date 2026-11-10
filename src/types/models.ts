@@ -209,6 +209,10 @@ export interface ProductivityWeights {
   companyWork: number
 }
 
+/** Reminder schedule, shared with the reminder Worker (worker/schedule.ts). */
+export type { ReminderConfig, ReminderKind } from '../../worker/schedule'
+import { DEFAULT_REMINDERS, type ReminderConfig } from '../../worker/schedule'
+
 export interface AppSettings {
   id: 'app'
   displayName: string
@@ -219,6 +223,9 @@ export interface AppSettings {
   targets: DailyTargets
   weights: ProductivityWeights
   allowCompanyExpenses: boolean
+  reminders: ReminderConfig
+  /** Push endpoint of this device while reminders are switched on. */
+  pushEndpoint?: string
   lastBackupAt?: string
   updatedAt: string
 }
@@ -239,5 +246,6 @@ export const DEFAULT_SETTINGS: AppSettings = {
   },
   weights: { study: 30, personalTasks: 25, habits: 25, companyWork: 20 },
   allowCompanyExpenses: false,
+  reminders: DEFAULT_REMINDERS,
   updatedAt: new Date(0).toISOString(),
 }

@@ -8,6 +8,16 @@
 - Sample data is flagged `isSample: true`, shown with a banner and badges, and removable without touching real entries.
 - Productivity and wellness are never combined. The productivity formula is in `features/analytics/productivity.ts` and explained on the Analytics screen.
 
+## Reminder service
+
+The only server-side code is `worker/` (Cloudflare Worker + one Durable Object):
+
+- `worker/schedule.ts`: pure reminder rules (shared with the app and tested)
+- `worker/webpush.ts`: VAPID-signed, payload-free Web Push using WebCrypto
+- `worker/index.ts`: `/api/push/*` endpoints and the 15-minute cron trigger
+- `public/push-sw.js`: imported by the service worker; shows notifications and handles YES / Remind me later
+- `src/features/reminders/`: Settings section and the animated in-app reminder (Drip and Luna)
+
 ## Folder structure
 
 ```
@@ -75,7 +85,9 @@ Migrations: never edit a shipped `version()` block. Add `version(n+1)` with the 
 | 2 | Design system, bottom navigation, app shell | Done |
 | 3 | Dexie database (17 tables), types, repositories, settings | Done |
 | 3b | Home dashboard, quick actions, Settings and data management, PWA | Done |
-| 4 | Finance: edit transactions, budgets, loans and EMI view, monthly summaries | Next |
+| 3c | Month-wise balance, menu crash fix | Done |
+| 3d | Water and bedtime reminders with notifications and animated mascots | Done |
+| 4 | Finance: edit transactions, budgets, loans and EMI view | Next |
 | 5 | Study: subjects, topics, goals, revision dates, subject-wise charts | |
 | 6 | Habits: create, edit, archive, weekly and monthly habits, streaks, calendar | |
 | 7 | Wellness: trends for sleep, weight, mood, energy; journal view | |

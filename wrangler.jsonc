@@ -1,8 +1,22 @@
 {
+  // Daily360: static app + reminder Worker on Cloudflare's free plan.
   "name": "daily-360",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-11-09",
+  // `npx wrangler deploy` builds the app first, so Cloudflare needs no separate build command.
+  "build": { "command": "npm run build" },
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  // Stores reminder times per device. Created automatically on deploy; free plan supports SQLite storage.
+  "durable_objects": {
+    "bindings": [{ "name": "REMINDERS", "class_name": "ReminderStore" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ReminderStore"] }],
+  // Checks for due reminders every 15 minutes.
+  "triggers": { "crons": ["*/15 * * * *"] },
+  "vars": { "VAPID_SUBJECT": "https://github.com/kirubaamalar/Daily-360" }
 }

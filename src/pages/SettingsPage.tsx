@@ -3,12 +3,17 @@ import { PageHeader } from '@/components/layout/PageHeader'
 import { SectionHeader } from '@/components/ui/Card'
 import { PreferencesForm } from '@/features/settings/PreferencesForm'
 import { DataManagement } from '@/features/settings/DataManagement'
+import { ReminderSettings } from '@/features/reminders/ReminderSettings'
 
 export default function SettingsPage() {
   return (
     <>
       <PageHeader title="Settings" subtitle="Preferences, targets, and your data" />
       <div className="space-y-8 px-4">
+        <section>
+          <SectionHeader title="Reminders" />
+          <ReminderSettings />
+        </section>
         <PreferencesForm />
         <section>
           <SectionHeader title="Your data" />

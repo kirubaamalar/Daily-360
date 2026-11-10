@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { BottomNav } from './BottomNav'
 import { Toaster } from '@/components/ui/Toaster'
 import { UpdatePrompt } from './UpdatePrompt'
+import { ReminderOverlay } from '@/features/reminders/ReminderOverlay'
 
 export function AppShell() {
   const { pathname } = useLocation()
@@ -15,6 +16,7 @@ export function AppShell() {
       <BottomNav />
       <Toaster />
       <UpdatePrompt />
+      <ReminderOverlay />
     </div>
   )
 }
